@@ -1,0 +1,15 @@
+   FbConnectionStringBuilder sb = new FbConnectionStringBuilder();
+            sb.Database = @"C:\Users\Osama\Desktop\firebird\HFOFFICE_UTF8.FDB";
+            sb.DataSource  = "localhost";
+            sb.UserID = "SYSDBA";
+            sb.Password = "masterkey";
+            sb.Port = 3050;
+            sb.Dialect = 3;
+            sb.Charset = "UTF8";
+            FbConnection con = new FbConnection("User=SYSDBA;" + "Password=masterkey;" + @"Database=C:\Users\Osama\Desktop\firebird\HFOFFICE_UTF8.FDB;" +"DataSource=localhost;" + "Port=3050;" + "Dialect=3;" + "Charset=UTF8;");
+            con.Open();
+            string query = "select * from Objekte";
+            FbDataAdapter adapter = new FbDataAdapter(query, con);
+            DataSet Ds = new DataSet();
+            adapter.Fill(Ds,"objekte");
+            gridControl1.DataSource = Ds.Tables["objekte"];
